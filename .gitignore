@@ -1,0 +1,11 @@
+# Local tooling, not part of the project itself
+.claude/
+
+# Superseded early design draft, kept locally for reference only
+preview.html
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

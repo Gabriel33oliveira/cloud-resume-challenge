@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Luz | Cloud & Infrastructure Engineering</title>
+<meta name="description" content="Gabriel Luz. Manufacturing engineer turned cloud infrastructure builder. AWS Certified Cloud Practitioner, CS&E student at University of Toledo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,440;9..144,500&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    <span>Open to cloud / infra roles</span>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="hero-network" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <filter id="glintGlow" x="-150%" y="-150%" width="400%" height="400%">
+        <feGaussianBlur stdDeviation="2.2" result="blur"></feGaussianBlur>
+        <feMerge>
+          <feMergeNode in="blur"></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
+
+      <symbol id="hexCluster" viewBox="0 0 54 48">
+        <polygon class="net-icon" points="9,16 13.5,8.2 22.5,8.2 27,16 22.5,23.8 13.5,23.8"></polygon>
+        <polygon class="net-icon" points="27,16 31.5,8.2 40.5,8.2 45,16 40.5,23.8 31.5,23.8"></polygon>
+        <polygon class="net-icon" points="18,32 22.5,24.2 31.5,24.2 36,32 31.5,39.8 22.5,39.8"></polygon>
+      </symbol>
+
+      <symbol id="layerStack" viewBox="0 0 72 46">
+        <rect class="net-icon net-icon-fill" x="0" y="26" width="56" height="16" rx="3"></rect>
+        <rect class="net-icon net-icon-fill" x="8" y="13" width="56" height="16" rx="3"></rect>
+        <rect class="net-icon net-icon-fill" x="16" y="0" width="56" height="16" rx="3"></rect>
+      </symbol>
+
+      <symbol id="windowCard" viewBox="0 0 64 44">
+        <rect class="net-icon net-icon-fill" x="0.5" y="0.5" width="63" height="43" rx="4"></rect>
+        <circle class="net-icon-dot" cx="7" cy="7" r="1.4"></circle>
+        <circle class="net-icon-dot" cx="12" cy="7" r="1.4"></circle>
+        <circle class="net-icon-dot" cx="17" cy="7" r="1.4"></circle>
+        <line class="net-icon-line" x1="6" y1="14" x2="58" y2="14"></line>
+        <line class="net-icon-line" x1="8" y1="22" x2="48" y2="22"></line>
+        <line class="net-icon-line" x1="8" y1="30" x2="40" y2="30"></line>
+      </symbol>
+    </defs>
+
+    <line class="net-line" x1="100" y1="120" x2="420" y2="220"></line>
+    <path id="p4" class="net-line" d="M420,220 L380,480"></path>
+    <path id="p5" class="net-line" d="M760,150 L1080,260"></path>
+    <path id="p6" class="net-line" d="M380,480 L820,500"></path>
+    <line class="net-line" x1="150" y1="560" x2="380" y2="480"></line>
+    <path id="p7" class="net-line" d="M820,500 L1050,580"></path>
+
+    <path id="p8" class="net-line" d="M100,120 L760,150"></path>
+    <path id="p9" class="net-line" d="M150,560 L760,150"></path>
+    <path id="p10" class="net-line" d="M1050,580 L420,220"></path>
+    <path id="p11" class="net-line" d="M1080,260 L150,560"></path>
+
+    <path id="p1" class="net-line draw" d="M420,220 L760,150" style="animation-delay: 0.1s"></path>
+    <path id="p2" class="net-line draw" d="M380,480 L820,500" style="animation-delay: 0.5s"></path>
+    <path id="p3" class="net-line draw" d="M760,150 L820,500" style="animation-delay: 0.9s"></path>
+
+    <circle class="net-node filled" cx="420" cy="220" r="5"></circle>
+    <circle class="net-node" cx="760" cy="150" r="4"></circle>
+    <circle class="net-node" cx="380" cy="480" r="4"></circle>
+    <circle class="net-node filled" cx="820" cy="500" r="5"></circle>
+
+    <use href="#hexCluster" width="54" height="48" transform="translate(73,96)"></use>
+    <use href="#layerStack" width="72" height="46" transform="translate(1045,237)"></use>
+    <use href="#windowCard" width="64" height="44" transform="translate(118,538)"></use>
+    <use href="#hexCluster" width="54" height="48" transform="translate(1023,556)"></use>
+
+    <circle class="net-pulse" cx="420" cy="220" r="4" style="animation-delay: 0.2s"></circle>
+    <circle class="net-pulse" cx="820" cy="500" r="4" style="animation-delay: 1.6s"></circle>
+    <circle class="net-pulse" cx="1080" cy="260" r="4" style="animation-delay: 2.4s"></circle>
+
+    <circle class="net-glint" r="2.4">
+      <animateMotion dur="3.4s" begin="1.9s" repeatCount="indefinite">
+        <mpath href="#p1"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="2.4">
+      <animateMotion dur="2.8s" begin="2.4s" repeatCount="indefinite">
+        <mpath href="#p2"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="2.2">
+      <animateMotion dur="3.9s" begin="3.1s" repeatCount="indefinite">
+        <mpath href="#p3"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="2" opacity="0.85">
+      <animateMotion dur="4.6s" begin="0.6s" repeatCount="indefinite">
+        <mpath href="#p4"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="2" opacity="0.85">
+      <animateMotion dur="3.6s" begin="1.2s" repeatCount="indefinite">
+        <mpath href="#p5"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="2" opacity="0.85">
+      <animateMotion dur="4.1s" begin="2s" repeatCount="indefinite">
+        <mpath href="#p6"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="1.8" opacity="0.7">
+      <animateMotion dur="3.3s" begin="0.3s" repeatCount="indefinite">
+        <mpath href="#p7"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="1.8" opacity="0.75">
+      <animateMotion dur="5.2s" begin="0.4s" repeatCount="indefinite">
+        <mpath href="#p8"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="1.8" opacity="0.75">
+      <animateMotion dur="6.1s" begin="1.5s" repeatCount="indefinite">
+        <mpath href="#p9"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="1.8" opacity="0.75">
+      <animateMotion dur="5.6s" begin="2.6s" repeatCount="indefinite">
+        <mpath href="#p10"></mpath>
+      </animateMotion>
+    </circle>
+    <circle class="net-glint" r="1.6" opacity="0.6">
+      <animateMotion dur="7s" begin="0.9s" repeatCount="indefinite">
+        <mpath href="#p11"></mpath>
+      </animateMotion>
+    </circle>
+  </svg>
+
+  <div class="hero-content">
+    <h1 class="hero-title">I eliminate <span class="accent">downtime</span> and manual work. Built on the factory floor, now built on <span class="accent">AWS</span>.</h1>
+    <p class="hero-sub">Manufacturing engineer turned cloud infrastructure builder. CS&amp;E student at University of Toledo <span class="mono">|</span> <span class="mono">AWS Certified Cloud Practitioner</span></p>
+  </div>
+
+  <div class="hero-scroll-cue"><span></span></div>
+</section>
+
+<section class="section" id="about">
+  <p class="section-heading">
+    Two manufacturing internships taught me the job cloud infrastructure and SRE roles actually reward: find the real root cause, fix the system behind it, and prove the fix with a number, not a guess. At JAC Products, I traced a 9% defect rate to overprocessing and cut it to 2.5%. At Campbell Soup, I led 35+ employees across two shifts and cut micro-stoppages 90%. That's floor experience and leadership already proven, not theory. I'm now pointing that same problem-solving at <span class="accent">AWS</span>, one certification and one real project at a time.
+  </p>
+
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-value"><span class="before">9%</span>&#8594; <span class="counter" data-target="2.5" data-decimals="1" data-suffix="%">0%</span></div>
+      <div class="metric-label">Paint-line defect rate,<br>root-cause analysis</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value"><span class="counter" data-target="67" data-prefix="-" data-suffix="%">0%</span></div>
+      <div class="metric-label">Active maintenance<br>work orders</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value"><span class="counter" data-target="90" data-prefix="-" data-suffix="%">0%</span></div>
+      <div class="metric-label">Line micro-stoppages<br>(uptime recovered)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value"><span class="counter" data-target="35" data-suffix="+">0+</span></div>
+      <div class="metric-label">Employees led,<br>two shifts</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="section-label">// Experience</div>
+  <div class="timeline">
+
+    <div class="timeline-entry">
+      <div class="timeline-date mono">May 2026 &ndash; Aug 2026</div>
+      <div class="timeline-role">Manufacturing Engineering Intern</div>
+      <div class="timeline-company mono">JAC Products</div>
+      <ul>
+        <li>Cut the 311D paint rejection rate from <strong>9% to 2.5%</strong> by designing five structured trials across 400 rails and auditing the full paint and inspection process on-site at the supplier. Proved the root cause was overprocessing, not equipment failure, and removed one operator per cell.</li>
+        <li>Rebuilt the preventive maintenance program in Asset Essentials, cutting active work orders <strong>67% (679 to 227)</strong> and daily tasks <strong>87% (189 to 24)</strong>.</li>
+        <li>Found <strong>187 maintenance tasks</strong> running under a single shared account with no accountable owner, and reassigned each one to a named individual.</li>
+        <li>Wrote the company's first controlled tooling standard for the BLM ELECT63 tube bender, consolidating scattered supplier manuals into one approved document through weekly review with engineering and leadership up to VP level.</li>
+        <li>Standardized AutoCAD layouts across two plants, <strong>Saline (223 to 76 layers)</strong> and <strong>Napoleon (120 to 72)</strong>, then modeled an incoming machine transfer in CAD from on-site measurements, planning the floor space before it arrived.</li>
+        <li>Authored the company-wide layer standard guide and trained engineers and managers across five plants in the US and Mexico.</li>
+      </ul>
+      <span class="highlight-tag">A least-privilege fix, before I knew the AWS term for it</span>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="timeline-date mono">May 2025 &ndash; Dec 2025</div>
+      <div class="timeline-role">Team Lead &amp; Engineering Intern</div>
+      <div class="timeline-company mono">Campbell Soup</div>
+      <ul>
+        <li>Led seasonal production, supervising <strong>35+ employees</strong> across 1st and 3rd shifts, ensuring safe start-ups and workflow continuity.</li>
+        <li>Reduced micro-stoppages on the 8oz can line <strong>90%</strong>, from 120 to 12 per day. The equivalent of a major uptime recovery on a line that runs around the clock.</li>
+        <li>Built an automated employee call-off workflow in Power Automate, replacing manual spreadsheets with one centralized, real-time system for <strong>20+ departments</strong>.</li>
+        <li>Worked across Engineering, Maintenance, Quality, Warehouse, and Sanitation to troubleshoot equipment and keep the line stable in 24/7 operations.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="timeline-date mono">Jan 2023 &ndash; Apr 2023</div>
+      <div class="timeline-role">E-commerce Developer</div>
+      <div class="timeline-company mono">Independent Contractor, Brazil</div>
+      <ul>
+        <li>Designed and launched a WooCommerce/WordPress store for a vintage car emblem business, taking it from an empty catalog to <strong>300+ products</strong>, with full payment and delivery systems configured, concept to launch in three months.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="timeline-date mono">Jul 2022 &ndash; Dec 2022</div>
+      <div class="timeline-role">Helpdesk</div>
+      <div class="timeline-company mono">Cast Group Inform&aacute;tica, S&atilde;o Paulo</div>
+      <ul>
+        <li>Resolved <strong>20+ tickets</strong> a day across Outlook, permissions, and hardware faults, earning the team's top service-quality rating.</li>
+        <li>Trained five new interns on ticketing systems and troubleshooting methodology.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="section-label">// Education</div>
+  <div class="edu-card">
+    <div class="edu-degree">Bachelor of Science, Computer Science &amp; Engineering</div>
+    <div class="edu-school mono">The University of Toledo</div>
+    <div class="edu-meta">Jan 2024 &ndash; Dec 2027 &middot; Toledo, Ohio &middot; GPA <span class="gpa">3.3</span>/4.0</div>
+    <div class="edu-row">
+      <div class="edu-block">
+        <div class="edu-block-label">Honors &amp; Awards</div>
+        <ul>
+          <li>Dean's List, Fall 2024</li>
+          <li>International Rocket Award Scholarship</li>
+        </ul>
+      </div>
+      <div class="edu-block">
+        <div class="edu-block-label">Activities</div>
+        <ul>
+          <li>Member, AI/ML Club</li>
+          <li>Student Worker, American Language Institute</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-label">// Projects</div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-status live-text"><span class="status-indicator live"></span> Live</div>
+      <div class="project-title">This Site</div>
+      <p class="project-desc">A private S3 bucket served through CloudFront with Origin Access Control. MFA-protected root account, day-to-day operation through a scoped IAM user, and budget alerts set up before anything went live.</p>
+      <div class="project-tags"><span>S3</span><span>CloudFront</span><span>IAM</span><span>OAC</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-status progress-text"><span class="status-indicator progress"></span> In Progress</div>
+      <div class="project-title">Production Data Pipeline</div>
+      <p class="project-desc">Factory-floor CSVs land in S3 and trigger a Lambda that calculates OEE, writes the results to DynamoDB, and exposes them through API Gateway.</p>
+      <div class="project-tags"><span>Lambda</span><span>S3</span><span>DynamoDB</span><span>API Gateway</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-status planned-text"><span class="status-indicator planned"></span> Planned</div>
+      <div class="project-title">Three-Tier VPC Application</div>
+      <p class="project-desc">A public ALB, auto-scaling EC2 instances, and a Multi-AZ RDS database in private subnets, rebuilt from a manual setup into Terraform.</p>
+      <div class="project-tags"><span>VPC</span><span>EC2</span><span>RDS</span><span>Terraform</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section skills-section" id="skills">
+  <div class="section-label">// Skills</div>
+  <div class="skills-grid">
+    <div class="skills-group">
+      <div class="skills-group-label">Cloud &amp; Infrastructure</div>
+      <div class="skills-tags">
+        <span tabindex="0" data-tip="Backbone of the OEE data pipeline and this site's hosting.">AWS S3</span><span tabindex="0" data-tip="Serves this site with Origin Access Control, no public bucket.">CloudFront</span><span tabindex="0" data-tip="Scoped user for daily operation; MFA locked on the root account.">IAM</span><span tabindex="0" data-tip="Computes OEE from factory-floor CSVs in the data pipeline project.">Lambda</span><span tabindex="0" data-tip="Planned for the three-tier VPC app, behind an auto-scaling group.">EC2</span><span tabindex="0" data-tip="Public ALB, private subnets, Multi-AZ RDS: the planned VPC project.">VPC</span><span tabindex="0" data-tip="Version control for every project on this site.">Git</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-label">Programming &amp; Web</div>
+      <div class="skills-tags">
+        <span tabindex="0" data-tip="Automation scripts and the OEE calculation logic.">Python</span><span tabindex="0" data-tip="Coursework and CS&E fundamentals at Toledo.">Java</span><span tabindex="0" data-tip="Every animation and interaction on this site, hand-written.">JavaScript</span><span tabindex="0" data-tip="This entire site: no framework, no build step.">HTML/CSS</span><span tabindex="0" data-tip="Built and launched a 300+ product store from an empty catalog.">WordPress</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-label">Data &amp; Systems</div>
+      <div class="skills-tags">
+        <span tabindex="0" data-tip="Root cause behind cutting micro-stoppages 90% at Campbell Soup.">Data Analysis</span><span tabindex="0" data-tip="Built the structured trial design behind the 311D defect fix.">Excel (Advanced)</span><span tabindex="0" data-tip="Replaced manual call-off spreadsheets for 20+ departments.">Power Automate</span><span tabindex="0" data-tip="Rebuilt the preventive maintenance program in Asset Essentials.">ERP / CMMS</span><span tabindex="0" data-tip="20+ tickets resolved daily, top service-quality rating.">IT Troubleshooting</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-label">Engineering &amp; Operations</div>
+      <div class="skills-tags">
+        <span tabindex="0" data-tip="Traced a 9% paint rejection rate down to overprocessing, not equipment.">Root Cause Analysis</span><span tabindex="0" data-tip="Five trials across 400 rails proved the fix before it shipped.">Structured Trials</span><span tabindex="0" data-tip="One tooling standard, five plants, two countries.">Process Standardization</span><span tabindex="0" data-tip="Cut layout complexity from 223 to 76 layers at Saline.">AutoCAD</span><span tabindex="0" data-tip="The thread running through every role on this page.">Continuous Improvement</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <div class="skills-group-label">Languages</div>
+      <div class="skills-tags">
+        <span tabindex="0" data-tip="First language.">Portuguese (Native)</span><span tabindex="0" data-tip="Working language for everything on this site.">English (Fluent)</span><span tabindex="0" data-tip="Professional working proficiency.">Spanish (Professional)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="certifications">
+  <div class="section-label">// Certifications</div>
+  <div class="cert-list">
+
+    <div class="cert-row">
+      <svg class="cert-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#00d9a3" stroke-width="1.5"/>
+        <path d="M13 20 L18 25 L27 15" stroke="#00d9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cert-info">
+        <div class="cert-name">AWS Certified Cloud Practitioner <span class="mono">(CLF-C02)</span></div>
+        <div class="cert-meta done">Earned, September 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-row">
+      <svg class="cert-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#5b9dff" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="20" cy="20" r="6" stroke="#5b9dff" stroke-width="2"/>
+      </svg>
+      <div class="cert-info">
+        <div class="cert-name">AWS Solutions Architect Associate <span class="mono">(SAA-C03)</span></div>
+        <div class="cert-meta pending">In progress, targeting December 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-row">
+      <svg class="cert-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#00d9a3" stroke-width="1.5"/>
+        <path d="M13 20 L18 25 L27 15" stroke="#00d9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cert-info">
+        <div class="cert-name">AI For Everyone <span class="mono">(DeepLearning.AI)</span></div>
+        <div class="cert-meta done">Completed</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="contact-badge"><span class="status-dot"></span> Actively applying to cloud &amp; infra roles</div>
+  <h2 class="contact-heading">Let's talk about <span class="glow-text">a role.</span></h2>
+  <p class="contact-sub">Based in Toledo, Ohio. Open to internships and entry-level roles in cloud infrastructure, DevOps, and SRE.</p>
+  <div class="contact-links">
+    <a class="contact-btn primary" href="mailto:Golivei3@rockets.utoledo.edu">Email me <span class="btn-arrow">&rarr;</span></a>
+    <a class="contact-btn" href="https://linkedin.com/in/gabriel--luz" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="contact-btn" href="tel:+14193291636">+1 419-329-1636</a>
+  </div>
+</section>
+
+<footer>Gabriel Luz &middot; Toledo, Ohio &middot; <span id="visitor-count"></span>Built with HTML, CSS, and JavaScript, hosted on S3 and CloudFront</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
