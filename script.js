@@ -9,18 +9,54 @@ if (EDIT_MODE) {
   document.head.appendChild(editor);
 }
 
-// ---------- Visitor counter (API Gateway + Lambda + DynamoDB) ----------
+// ---------- Live page-load counter (API Gateway + Lambda + DynamoDB) ----------
+// Every call to the API adds one, so it is called exactly once per page load,
+// and the number rolls up from zero when the card scrolls into view.
 (function loadVisitorCount() {
-  const el = document.getElementById('visitor-count');
-  if (!el) return;
+  const box = document.querySelector('.visitor-live');
+  const num = box && box.querySelector('[data-visitor-count]');
+  if (!num) return;
+  // Editing locally should not inflate the real count.
+  if (EDIT_MODE) return;
+
+  let value = null;
+  let inView = false;
+  let done = false;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show() {
+    if (done || value === null || !inView) return;
+    done = true;
+    if (reduce) { num.textContent = value.toLocaleString('en-US'); return; }
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / 1100, 1);
+      num.textContent = Math.round(value * (1 - Math.pow(1 - p, 3))).toLocaleString('en-US');
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  new IntersectionObserver((entries, obs) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      inView = true;
+      obs.disconnect();
+      show();
+    }
+  }, { threshold: 0.4 }).observe(box);
 
   fetch('https://bh0byblyki.execute-api.us-east-1.amazonaws.com/count')
     .then((res) => res.json())
     .then((data) => {
-      el.textContent = 'Visitor #' + data.count.toLocaleString('en-US') + ' · ';
+      value = Number(data.count);
+      box.dataset.state = 'live';
+      show();
     })
     .catch(() => {
-      // Fail silently: the footer just reads without the counter if the API is unreachable.
+      // Say so plainly instead of leaving a spinner or a fake number.
+      box.dataset.state = 'offline';
+      num.textContent = '–';
+      box.querySelector('.visitor-cap').textContent = 'The counter API did not answer just now, so this load was not counted.';
     });
 })();
 

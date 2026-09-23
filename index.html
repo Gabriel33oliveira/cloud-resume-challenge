@@ -154,17 +154,60 @@
   <h2 class="section-title">Three projects on AWS. One of them is this page.</h2>
   <div class="projects-grid">
 
-    <div class="project-card">
-      <div class="project-status live-text"><span class="status-indicator live"></span> Live</div>
+    <div class="project-card is-featured">
+      <div class="project-head">
+        <div class="project-status live-text"><span class="status-indicator live"></span> Live</div>
+        <a class="project-link" href="https://github.com/Gabriel33oliveira/cloud-resume-challenge" target="_blank" rel="noopener">View the code on GitHub <span aria-hidden="true">↗</span></a>
+      </div>
       <div class="project-title">This Site</div>
-      <p class="project-desc">A private S3 bucket served through CloudFront with Origin Access Control. MFA-protected root account, day-to-day operation through a scoped IAM user, and budget alerts set up before anything went live.</p>
-      <div class="project-tags"><span>S3</span><span>CloudFront</span><span>IAM</span><span>OAC</span></div>
+      <p class="project-desc">My take on the Cloud Resume Challenge. The page you are reading is the project: a static site on AWS with a serverless backend, automated deploys, and the whole stack described in Terraform.</p>
+
+      <div class="visitor-live" data-state="loading">
+        <div class="visitor-num" data-visitor-count aria-live="polite">···</div>
+        <div class="visitor-copy">
+          <div class="visitor-label mono"><span class="visitor-dot" aria-hidden="true"></span> Page loads, counted live</div>
+          <p class="visitor-cap">Your visit was just counted: this page called API Gateway, which ran a Lambda that added one to a DynamoDB table.</p>
+        </div>
+      </div>
+
+      <div class="project-blocks">
+        <div class="project-block">
+          <div class="project-block-label mono">Hosting</div>
+          <p>A private S3 bucket behind CloudFront with Origin Access Control, HTTPS only. Root account locked with MFA, daily work through a scoped IAM user, and a budget alert set before launch.</p>
+        </div>
+        <div class="project-block">
+          <div class="project-block-label mono">Serverless counter</div>
+          <p>API Gateway HTTP API, a Python Lambda, and a DynamoDB table. One atomic increment per page load, no server to manage.</p>
+        </div>
+        <div class="project-block">
+          <div class="project-block-label mono">CI/CD</div>
+          <p>Every push to main deploys through GitHub Actions. It signs in to AWS with OIDC, so no AWS keys are stored in GitHub.</p>
+        </div>
+        <div class="project-block">
+          <div class="project-block-label mono">Terraform and tests</div>
+          <p>S3, CloudFront, DynamoDB, Lambda, API Gateway and IAM are all written as Terraform. The Lambda has unit tests that mock DynamoDB, so they run without AWS credentials.</p>
+        </div>
+      </div>
+
+      <div class="project-bugs">
+        <div class="project-block-label mono">Two bugs worth telling</div>
+        <div class="project-bug">
+          <div class="project-bug-title">The table that couldn't be renamed</div>
+          <p>I misspelled "portfolio" when creating the DynamoDB table, then "fixed" the IAM policy to match my code, which only produced a new error. Tables can't be renamed, so the real fix was pointing the code and policy at the table that actually existed.</p>
+        </div>
+        <div class="project-bug">
+          <div class="project-bug-title">The trust policy that looked right</div>
+          <p>GitHub Actions kept getting AccessDenied even though every name matched the docs. CloudTrail showed that GitHub's OIDC token now carries numeric owner and repo IDs, and the trust policy needed those, not just the names.</p>
+        </div>
+      </div>
+
+      <div class="project-tags"><span>S3</span><span>CloudFront</span><span>API Gateway</span><span>Lambda</span><span>DynamoDB</span><span>IAM</span><span>GitHub Actions</span><span>OIDC</span><span>Terraform</span><span>Python</span></div>
     </div>
 
     <div class="project-card">
       <div class="project-status progress-text"><span class="status-indicator progress"></span> In Progress</div>
       <div class="project-title">Production Data Pipeline</div>
-      <p class="project-desc">Factory-floor CSVs land in S3 and trigger a Lambda that calculates OEE, writes the results to DynamoDB, and exposes them through API Gateway.</p>
+      <p class="project-desc">Factory-floor CSVs land in S3 and trigger a Lambda that calculates OEE (Overall Equipment Effectiveness), writes the results to DynamoDB, and exposes them through API Gateway.</p>
       <div class="project-tags"><span>Lambda</span><span>S3</span><span>DynamoDB</span><span>API Gateway</span></div>
     </div>
 
@@ -267,7 +310,7 @@
 
 </main>
 
-<footer>Gabriel Luz · Toledo, Ohio · <span id="visitor-count"></span>Built with HTML, CSS, and JavaScript, hosted on S3 and CloudFront</footer>
+<footer>Gabriel Luz · Toledo, Ohio · Built with HTML, CSS, and JavaScript, hosted on S3 and CloudFront</footer>
 
 <script src="script.js"></script>
 <script type="module" src="universe.js"></script>
