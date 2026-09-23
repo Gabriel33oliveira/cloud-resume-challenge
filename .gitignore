@@ -9,3 +9,9 @@ preview.html
 Thumbs.db
 __pycache__/
 *.pyc
+
+# Claude skills, prompts and design context: kept local, never published
+Skills/
+PRODUCT.md
+DESIGN.md
+.impeccable/
