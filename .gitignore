@@ -1,17 +1,13 @@
-# Local tooling, not part of the project itself
+# Claude: skills, agents, hooks, prompts and design context.
+# Kept on this machine only, never published.
 .claude/
-
-# Superseded early design draft, kept locally for reference only
-preview.html
+Skills/
+PRODUCT.md
+DESIGN.md
+.impeccable/
 
 # OS/editor noise
 .DS_Store
 Thumbs.db
 __pycache__/
 *.pyc
-
-# Claude skills, prompts and design context: kept local, never published
-Skills/
-PRODUCT.md
-DESIGN.md
-.impeccable/
