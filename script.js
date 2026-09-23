@@ -1,3 +1,14 @@
+// ---------- Edit mode: only on your own machine, never on the live site ----------
+// Open http://localhost:8791/?edit to edit text in place. edit.js is not deployed.
+const EDIT_MODE = ['localhost', '127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).has('edit');
+if (EDIT_MODE) {
+  document.documentElement.classList.add('is-editing');
+  const editor = document.createElement('script');
+  editor.type = 'module';
+  editor.src = 'edit.js';
+  document.head.appendChild(editor);
+}
+
 // ---------- Visitor counter (API Gateway + Lambda + DynamoDB) ----------
 (function loadVisitorCount() {
   const el = document.getElementById('visitor-count');
@@ -13,72 +24,93 @@
     });
 })();
 
-// ---------- Skill tag "pin" toggle (click, or Enter/Space, to mark as a core strength) ----------
-(function setupSkillTags() {
-  let hasAnyStoredPin = false;
-  try {
-    hasAnyStoredPin = Object.keys(localStorage).some((k) => k.startsWith('skill-pin:'));
-  } catch (e) {}
-
-  document.querySelectorAll('.skills-tags span').forEach((tag) => {
-    const key = 'skill-pin:' + tag.textContent.trim();
-    tag.setAttribute('role', 'button');
-
-    let pinned = false;
-    try {
-      const stored = localStorage.getItem(key);
-      if (stored === '1') pinned = true;
-      // First-ever visit, nothing pinned yet: default the flagship category
-      // (Cloud & Infrastructure) to pinned, since that is this site's whole thesis.
-      else if (stored === null && !hasAnyStoredPin && tag.closest('.skills-group').querySelector('.skills-group-label').textContent.includes('Cloud & Infrastructure')) {
-        pinned = true;
-      }
-    } catch (e) {}
-
-    if (pinned) tag.classList.add('pinned');
-    tag.setAttribute('aria-pressed', pinned ? 'true' : 'false');
-
-    function togglePin() {
-      if (document.body.classList.contains('edit-mode')) return;
-      const now = tag.classList.toggle('pinned');
-      tag.setAttribute('aria-pressed', now ? 'true' : 'false');
-      try {
-        localStorage.setItem(key, now ? '1' : '0');
-      } catch (e) {}
-    }
-
-    tag.addEventListener('click', togglePin);
-    tag.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        togglePin();
-      }
-    });
+// ---------- Skills: show how many tags each card holds ----------
+(function countSkills() {
+  if (EDIT_MODE) return; // keep the markup exactly as written while editing
+  document.querySelectorAll('.skills-group').forEach((group) => {
+    const label = group.querySelector('.skills-group-label');
+    const n = group.querySelectorAll('.skills-tags span').length;
+    if (!label || !n) return;
+    const count = document.createElement('span');
+    count.className = 'skills-count';
+    count.setAttribute('aria-hidden', 'true');
+    count.textContent = String(n).padStart(2, '0');
+    label.appendChild(count);
   });
 })();
 
-// Scroll-reveal for any element with the .reveal class
-const revealEls = document.querySelectorAll(
-  '.metric-card, .section-label, .section-heading, .timeline-entry, .edu-card, .project-card, .skills-group, .cert-row, .contact-badge, .contact-heading, .contact-sub, .contact-links'
-);
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('in-view'), i * 90);
-      revealObserver.unobserve(entry.target);
+// ---------- Hero title: wrap each word so it can enter on its own beat ----------
+(function splitHeroTitle() {
+  const title = document.querySelector('.hero-title');
+  if (!title || EDIT_MODE || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let i = 0;
+  const wrap = (node) => {
+    const span = document.createElement('span');
+    span.className = 'w';
+    span.style.setProperty('--i', i++);
+    node.parentNode.insertBefore(span, node);
+    span.appendChild(node);
+  };
+  Array.from(title.childNodes).forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const parts = node.textContent.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      parts.forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          frag.appendChild(document.createTextNode(part));
+        } else {
+          const span = document.createElement('span');
+          span.className = 'w';
+          span.style.setProperty('--i', i++);
+          span.textContent = part;
+          frag.appendChild(span);
+        }
+      });
+      title.replaceChild(frag, node);
+    } else {
+      wrap(node);
     }
   });
-}, { threshold: 0.2, rootMargin: '-40px' });
+})();
 
-revealEls.forEach((el) => revealObserver.observe(el));
+// ---------- Scroll reveal: a few chosen blocks, once, never on scroll-up ----------
+// The .reveal class is added here, so without JavaScript everything is simply visible.
+if (!EDIT_MODE) {
+  const revealEls = document.querySelectorAll(
+    '.section-heading, .section-title, .metrics, .timeline-entry, .edu-card, .project-card, .skills-group, .cert-list, .contact-section > *'
+  );
 
-// Animated counters (run once, when in view)
+  const revealObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter((e) => e.isIntersecting);
+    visible.forEach((entry, i) => {
+      const el = entry.target;
+      const delay = i * 60;
+      el.style.transitionDelay = delay + 'ms';
+      el.classList.add('in-view');
+      revealObserver.unobserve(el);
+      // Once it has arrived, hand the element back to its own hover transitions.
+      setTimeout(() => {
+        el.classList.remove('reveal');
+        el.style.transitionDelay = '';
+      }, delay + 700);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach((el) => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+}
+
+// ---------- Animated counters (run once, when in view) ----------
+function counterText(el, value) {
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  return (el.dataset.prefix || '') + value.toFixed(decimals) + (el.dataset.suffix || '');
+}
+
 function animateCounter(el) {
   const target = parseFloat(el.dataset.target);
-  const decimals = parseInt(el.dataset.decimals || '0', 10);
-  const prefix = el.dataset.prefix || '';
-  const suffix = el.dataset.suffix || '';
   const duration = 1100;
   const start = performance.now();
 
@@ -86,60 +118,23 @@ function animateCounter(el) {
 
   function tick(now) {
     const p = Math.min((now - start) / duration, 1);
-    const val = target * ease(p);
-    el.textContent = prefix + val.toFixed(decimals) + suffix;
+    el.textContent = counterText(el, target * ease(p));
     if (p < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 }
 
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
+if (EDIT_MODE) {
+  document.querySelectorAll('.counter').forEach((el) => { el.textContent = counterText(el, parseFloat(el.dataset.target)); });
+} else {
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
 
-document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
-
-// Subtle spring-like parallax on the hero network, following the pointer.
-// Decorative only: skipped entirely under prefers-reduced-motion and on touch devices.
-const heroNetwork = document.querySelector('.hero-network');
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-if (heroNetwork && !prefersReducedMotion && canHover) {
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let ticking = false;
-
-  function springTick() {
-    currentX += (targetX - currentX) * 0.06;
-    currentY += (targetY - currentY) * 0.06;
-    heroNetwork.style.transform = `translate(${currentX}px, ${currentY}px)`;
-
-    // Settle and stop the loop once the motion is imperceptible, rather than
-    // running requestAnimationFrame forever while the pointer sits still.
-    if (Math.abs(targetX - currentX) < 0.01 && Math.abs(targetY - currentY) < 0.01) {
-      ticking = false;
-      return;
-    }
-    requestAnimationFrame(springTick);
-  }
-
-  document.querySelector('.hero').addEventListener('mousemove', (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    targetX = px * 16;
-    targetY = py * 16;
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(springTick);
-    }
-  });
+  document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
 }

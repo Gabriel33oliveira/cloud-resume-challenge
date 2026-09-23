@@ -3,165 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabriel Luz | Cloud & Infrastructure Engineering</title>
-<meta name="description" content="Gabriel Luz. Manufacturing engineer turned cloud infrastructure builder. AWS Certified Cloud Practitioner, CS&E student at University of Toledo.">
+<title>Gabriel Luz | Cloud &amp; Infrastructure Engineering</title>
+<meta name="description" content="Gabriel Luz. Manufacturing engineer turned cloud infrastructure builder. AWS Certified Cloud Practitioner, CS&amp;E student at University of Toledo.">
+<meta name="theme-color" content="#04060b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,440;9..144,500&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<div class="scene" aria-hidden="true">
+  <div class="aurora"></div>
+  <canvas id="universe"></canvas>
+  <div class="scene-labels"></div>
+</div>
+<p class="scene-caption mono" aria-hidden="true"></p>
+
 <nav>
-  <div class="nav-status">
-    <span class="status-dot"></span>
-    <span>Open to cloud / infra roles</span>
-  </div>
+  <a class="nav-brand" href="#top">Gabriel Luz</a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
   </div>
+  <a class="nav-cta" href="#contact">Contact <span aria-hidden="true">·</span></a>
 </nav>
 
-<section class="hero">
-  <svg class="hero-network" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <filter id="glintGlow" x="-150%" y="-150%" width="400%" height="400%">
-        <feGaussianBlur stdDeviation="2.2" result="blur"></feGaussianBlur>
-        <feMerge>
-          <feMergeNode in="blur"></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
+<main>
 
-      <symbol id="hexCluster" viewBox="0 0 54 48">
-        <polygon class="net-icon" points="9,16 13.5,8.2 22.5,8.2 27,16 22.5,23.8 13.5,23.8"></polygon>
-        <polygon class="net-icon" points="27,16 31.5,8.2 40.5,8.2 45,16 40.5,23.8 31.5,23.8"></polygon>
-        <polygon class="net-icon" points="18,32 22.5,24.2 31.5,24.2 36,32 31.5,39.8 22.5,39.8"></polygon>
-      </symbol>
-
-      <symbol id="layerStack" viewBox="0 0 72 46">
-        <rect class="net-icon net-icon-fill" x="0" y="26" width="56" height="16" rx="3"></rect>
-        <rect class="net-icon net-icon-fill" x="8" y="13" width="56" height="16" rx="3"></rect>
-        <rect class="net-icon net-icon-fill" x="16" y="0" width="56" height="16" rx="3"></rect>
-      </symbol>
-
-      <symbol id="windowCard" viewBox="0 0 64 44">
-        <rect class="net-icon net-icon-fill" x="0.5" y="0.5" width="63" height="43" rx="4"></rect>
-        <circle class="net-icon-dot" cx="7" cy="7" r="1.4"></circle>
-        <circle class="net-icon-dot" cx="12" cy="7" r="1.4"></circle>
-        <circle class="net-icon-dot" cx="17" cy="7" r="1.4"></circle>
-        <line class="net-icon-line" x1="6" y1="14" x2="58" y2="14"></line>
-        <line class="net-icon-line" x1="8" y1="22" x2="48" y2="22"></line>
-        <line class="net-icon-line" x1="8" y1="30" x2="40" y2="30"></line>
-      </symbol>
-    </defs>
-
-    <line class="net-line" x1="100" y1="120" x2="420" y2="220"></line>
-    <path id="p4" class="net-line" d="M420,220 L380,480"></path>
-    <path id="p5" class="net-line" d="M760,150 L1080,260"></path>
-    <path id="p6" class="net-line" d="M380,480 L820,500"></path>
-    <line class="net-line" x1="150" y1="560" x2="380" y2="480"></line>
-    <path id="p7" class="net-line" d="M820,500 L1050,580"></path>
-
-    <path id="p8" class="net-line" d="M100,120 L760,150"></path>
-    <path id="p9" class="net-line" d="M150,560 L760,150"></path>
-    <path id="p10" class="net-line" d="M1050,580 L420,220"></path>
-    <path id="p11" class="net-line" d="M1080,260 L150,560"></path>
-
-    <path id="p1" class="net-line draw" d="M420,220 L760,150" style="animation-delay: 0.1s"></path>
-    <path id="p2" class="net-line draw" d="M380,480 L820,500" style="animation-delay: 0.5s"></path>
-    <path id="p3" class="net-line draw" d="M760,150 L820,500" style="animation-delay: 0.9s"></path>
-
-    <circle class="net-node filled" cx="420" cy="220" r="5"></circle>
-    <circle class="net-node" cx="760" cy="150" r="4"></circle>
-    <circle class="net-node" cx="380" cy="480" r="4"></circle>
-    <circle class="net-node filled" cx="820" cy="500" r="5"></circle>
-
-    <use href="#hexCluster" width="54" height="48" transform="translate(73,96)"></use>
-    <use href="#layerStack" width="72" height="46" transform="translate(1045,237)"></use>
-    <use href="#windowCard" width="64" height="44" transform="translate(118,538)"></use>
-    <use href="#hexCluster" width="54" height="48" transform="translate(1023,556)"></use>
-
-    <circle class="net-pulse" cx="420" cy="220" r="4" style="animation-delay: 0.2s"></circle>
-    <circle class="net-pulse" cx="820" cy="500" r="4" style="animation-delay: 1.6s"></circle>
-    <circle class="net-pulse" cx="1080" cy="260" r="4" style="animation-delay: 2.4s"></circle>
-
-    <circle class="net-glint" r="2.4">
-      <animateMotion dur="3.4s" begin="1.9s" repeatCount="indefinite">
-        <mpath href="#p1"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="2.4">
-      <animateMotion dur="2.8s" begin="2.4s" repeatCount="indefinite">
-        <mpath href="#p2"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="2.2">
-      <animateMotion dur="3.9s" begin="3.1s" repeatCount="indefinite">
-        <mpath href="#p3"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="2" opacity="0.85">
-      <animateMotion dur="4.6s" begin="0.6s" repeatCount="indefinite">
-        <mpath href="#p4"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="2" opacity="0.85">
-      <animateMotion dur="3.6s" begin="1.2s" repeatCount="indefinite">
-        <mpath href="#p5"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="2" opacity="0.85">
-      <animateMotion dur="4.1s" begin="2s" repeatCount="indefinite">
-        <mpath href="#p6"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="1.8" opacity="0.7">
-      <animateMotion dur="3.3s" begin="0.3s" repeatCount="indefinite">
-        <mpath href="#p7"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="1.8" opacity="0.75">
-      <animateMotion dur="5.2s" begin="0.4s" repeatCount="indefinite">
-        <mpath href="#p8"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="1.8" opacity="0.75">
-      <animateMotion dur="6.1s" begin="1.5s" repeatCount="indefinite">
-        <mpath href="#p9"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="1.8" opacity="0.75">
-      <animateMotion dur="5.6s" begin="2.6s" repeatCount="indefinite">
-        <mpath href="#p10"></mpath>
-      </animateMotion>
-    </circle>
-    <circle class="net-glint" r="1.6" opacity="0.6">
-      <animateMotion dur="7s" begin="0.9s" repeatCount="indefinite">
-        <mpath href="#p11"></mpath>
-      </animateMotion>
-    </circle>
-  </svg>
-
+<section class="hero" id="top">
   <div class="hero-content">
+    <p class="hero-kicker mono"><span class="status-dot"></span> Open to cloud / infra roles</p>
     <h1 class="hero-title">I eliminate <span class="accent">downtime</span> and manual work. Built on the factory floor, now built on <span class="accent">AWS</span>.</h1>
     <p class="hero-sub">Manufacturing engineer turned cloud infrastructure builder. CS&amp;E student at University of Toledo <span class="mono">|</span> <span class="mono">AWS Certified Cloud Practitioner</span></p>
   </div>
 
-  <div class="hero-scroll-cue"><span></span></div>
+  <div class="hero-foot mono">
+    <span class="hero-hint">Drag the globe to spin it</span>
+    <span class="hero-scroll-cue">Scroll <span></span></span>
+  </div>
 </section>
 
-<section class="section" id="about">
-  <p class="section-heading">
-    Two manufacturing internships taught me the job cloud infrastructure and SRE roles actually reward: find the real root cause, fix the system behind it, and prove the fix with a number, not a guess. At JAC Products, I traced a 9% defect rate to overprocessing and cut it to 2.5%. At Campbell Soup, I led 35+ employees across two shifts and cut micro-stoppages 90%. That's floor experience and leadership already proven, not theory. I'm now pointing that same problem-solving at <span class="accent">AWS</span>, one certification and one real project at a time.
-  </p>
+<section class="section split" id="about">
+  <div class="section-label">01 / About</div>
+  <p class="section-heading">Two manufacturing internships taught me that the job cloud infrastructure and SRE roles actually reward finding the real root cause, fixing the system behind it, and proving the fix with a number, not a guess. At JAC Products, I traced a 9% defect rate to overprocessing and cut it to 2.5%. At Campbell Soup, I led 35+ employees across two shifts and cut micro-stoppages by 90%. That's floor experience and leadership already proven, not theory. I'm now pointing that same problem-solving at <span class="accent">AWS</span>, one certification and one real project at a time.</p>
 
   <div class="metrics">
     <div class="metric-card">
-      <div class="metric-value"><span class="before">9%</span>&#8594; <span class="counter" data-target="2.5" data-decimals="1" data-suffix="%">0%</span></div>
+      <div class="metric-value"><span class="before">9%</span>→ <span class="counter" data-target="2.5" data-decimals="1" data-suffix="%">0%</span></div>
       <div class="metric-label">Paint-line defect rate,<br>root-cause analysis</div>
     </div>
     <div class="metric-card">
@@ -179,12 +70,13 @@
   </div>
 </section>
 
-<section class="section" id="experience">
-  <div class="section-label">// Experience</div>
+<section class="section split" id="experience">
+  <div class="section-label">02 / Experience</div>
+  <h2 class="section-title">Where the numbers come from.</h2>
   <div class="timeline">
 
     <div class="timeline-entry">
-      <div class="timeline-date mono">May 2026 &ndash; Aug 2026</div>
+      <div class="timeline-date mono">May 2026 – Aug 2026</div>
       <div class="timeline-role">Manufacturing Engineering Intern</div>
       <div class="timeline-company mono">JAC Products</div>
       <ul>
@@ -199,7 +91,7 @@
     </div>
 
     <div class="timeline-entry">
-      <div class="timeline-date mono">May 2025 &ndash; Dec 2025</div>
+      <div class="timeline-date mono">May 2025 – Dec 2025</div>
       <div class="timeline-role">Team Lead &amp; Engineering Intern</div>
       <div class="timeline-company mono">Campbell Soup</div>
       <ul>
@@ -211,7 +103,7 @@
     </div>
 
     <div class="timeline-entry">
-      <div class="timeline-date mono">Jan 2023 &ndash; Apr 2023</div>
+      <div class="timeline-date mono">Jan 2023 – Apr 2023</div>
       <div class="timeline-role">E-commerce Developer</div>
       <div class="timeline-company mono">Independent Contractor, Brazil</div>
       <ul>
@@ -220,9 +112,9 @@
     </div>
 
     <div class="timeline-entry">
-      <div class="timeline-date mono">Jul 2022 &ndash; Dec 2022</div>
+      <div class="timeline-date mono">Jul 2022 – Dec 2022</div>
       <div class="timeline-role">Helpdesk</div>
-      <div class="timeline-company mono">Cast Group Inform&aacute;tica, S&atilde;o Paulo</div>
+      <div class="timeline-company mono">Cast Group Informática, São Paulo</div>
       <ul>
         <li>Resolved <strong>20+ tickets</strong> a day across Outlook, permissions, and hardware faults, earning the team's top service-quality rating.</li>
         <li>Trained five new interns on ticketing systems and troubleshooting methodology.</li>
@@ -232,12 +124,12 @@
   </div>
 </section>
 
-<section class="section" id="education">
-  <div class="section-label">// Education</div>
+<section class="section split" id="education">
+  <div class="section-label">03 / Education</div>
   <div class="edu-card">
     <div class="edu-degree">Bachelor of Science, Computer Science &amp; Engineering</div>
     <div class="edu-school mono">The University of Toledo</div>
-    <div class="edu-meta">Jan 2024 &ndash; Dec 2027 &middot; Toledo, Ohio &middot; GPA <span class="gpa">3.3</span>/4.0</div>
+    <div class="edu-meta">Jan 2024 – Dec 2027 · Toledo, Ohio · GPA <span class="gpa">3.3</span>/4.0</div>
     <div class="edu-row">
       <div class="edu-block">
         <div class="edu-block-label">Honors &amp; Awards</div>
@@ -257,8 +149,9 @@
   </div>
 </section>
 
-<section class="section" id="projects">
-  <div class="section-label">// Projects</div>
+<section class="section split" id="projects">
+  <div class="section-label">04 / Projects</div>
+  <h2 class="section-title">Three projects on AWS. One of them is this page.</h2>
   <div class="projects-grid">
 
     <div class="project-card">
@@ -286,7 +179,7 @@
 </section>
 
 <section class="section skills-section" id="skills">
-  <div class="section-label">// Skills</div>
+  <div class="section-label">05 / Skills</div>
   <div class="skills-grid">
     <div class="skills-group">
       <div class="skills-group-label">Cloud &amp; Infrastructure</div>
@@ -297,7 +190,7 @@
     <div class="skills-group">
       <div class="skills-group-label">Programming &amp; Web</div>
       <div class="skills-tags">
-        <span tabindex="0" data-tip="Automation scripts and the OEE calculation logic.">Python</span><span tabindex="0" data-tip="Coursework and CS&E fundamentals at Toledo.">Java</span><span tabindex="0" data-tip="Every animation and interaction on this site, hand-written.">JavaScript</span><span tabindex="0" data-tip="This entire site: no framework, no build step.">HTML/CSS</span><span tabindex="0" data-tip="Built and launched a 300+ product store from an empty catalog.">WordPress</span>
+        <span tabindex="0" data-tip="Automation scripts and the OEE calculation logic.">Python</span><span tabindex="0" data-tip="Coursework and CS&amp;E fundamentals at Toledo.">Java</span><span tabindex="0" data-tip="Every animation and interaction on this site, hand-written.">JavaScript</span><span tabindex="0" data-tip="This entire site: no framework, no build step.">HTML/CSS</span><span tabindex="0" data-tip="Built and launched a 300+ product store from an empty catalog.">WordPress</span>
       </div>
     </div>
     <div class="skills-group">
@@ -321,14 +214,14 @@
   </div>
 </section>
 
-<section class="section" id="certifications">
-  <div class="section-label">// Certifications</div>
+<section class="section split" id="certifications">
+  <div class="section-label">06 / Certifications</div>
   <div class="cert-list">
 
     <div class="cert-row">
       <svg class="cert-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#00d9a3" stroke-width="1.5"/>
-        <path d="M13 20 L18 25 L27 15" stroke="#00d9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#00d9a3" stroke-width="1.5"></path>
+        <path d="M13 20 L18 25 L27 15" stroke="#00d9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <div class="cert-info">
         <div class="cert-name">AWS Certified Cloud Practitioner <span class="mono">(CLF-C02)</span></div>
@@ -338,8 +231,8 @@
 
     <div class="cert-row">
       <svg class="cert-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#5b9dff" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <circle cx="20" cy="20" r="6" stroke="#5b9dff" stroke-width="2"/>
+        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#5b9dff" stroke-width="1.5" stroke-dasharray="4 3"></path>
+        <circle cx="20" cy="20" r="6" stroke="#5b9dff" stroke-width="2"></circle>
       </svg>
       <div class="cert-info">
         <div class="cert-name">AWS Solutions Architect Associate <span class="mono">(SAA-C03)</span></div>
@@ -349,8 +242,8 @@
 
     <div class="cert-row">
       <svg class="cert-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#00d9a3" stroke-width="1.5"/>
-        <path d="M13 20 L18 25 L27 15" stroke="#00d9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 4 L35 12 V28 L20 36 L5 28 V12 Z" stroke="#00d9a3" stroke-width="1.5"></path>
+        <path d="M13 20 L18 25 L27 15" stroke="#00d9a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <div class="cert-info">
         <div class="cert-name">AI For Everyone <span class="mono">(DeepLearning.AI)</span></div>
@@ -364,16 +257,21 @@
 <section class="section contact-section" id="contact">
   <div class="contact-badge"><span class="status-dot"></span> Actively applying to cloud &amp; infra roles</div>
   <h2 class="contact-heading">Let's talk about <span class="glow-text">a role.</span></h2>
-  <p class="contact-sub">Based in Toledo, Ohio. Open to internships and entry-level roles in cloud infrastructure, DevOps, and SRE.</p>
+  <p class="contact-sub">Based in Toledo, Ohio. Open to contractor and entry-level roles in cloud infrastructure, DevOps, and SRE.</p>
   <div class="contact-links">
-    <a class="contact-btn primary" href="mailto:Golivei3@rockets.utoledo.edu">Email me <span class="btn-arrow">&rarr;</span></a>
+    <a class="contact-btn primary" href="mailto:Golivei3@rockets.utoledo.edu">Email me <span class="btn-arrow">→</span></a>
     <a class="contact-btn" href="https://linkedin.com/in/gabriel--luz" target="_blank" rel="noopener">LinkedIn</a>
     <a class="contact-btn" href="tel:+14193291636">+1 419-329-1636</a>
   </div>
 </section>
 
-<footer>Gabriel Luz &middot; Toledo, Ohio &middot; <span id="visitor-count"></span>Built with HTML, CSS, and JavaScript, hosted on S3 and CloudFront</footer>
+</main>
+
+<footer>Gabriel Luz · Toledo, Ohio · <span id="visitor-count"></span>Built with HTML, CSS, and JavaScript, hosted on S3 and CloudFront</footer>
 
 <script src="script.js"></script>
-</body>
-</html>
+<script type="module" src="universe.js"></script>
+
+
+
+</body></html>

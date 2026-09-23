@@ -26,6 +26,7 @@ jobs:
           aws s3 cp index.html s3://gabriel-luz-portifolio/index.html
           aws s3 cp styles.css s3://gabriel-luz-portifolio/styles.css
           aws s3 cp script.js s3://gabriel-luz-portifolio/script.js
+          aws s3 cp universe.js s3://gabriel-luz-portifolio/universe.js
 
       - name: Invalidate CloudFront cache
         run: |
