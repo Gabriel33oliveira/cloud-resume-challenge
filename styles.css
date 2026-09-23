@@ -793,6 +793,8 @@ h1.hero-title .accent { color: var(--accent-blue-light); }
   margin-bottom: 26px;
 }
 
+.project-block.is-wide { grid-column: 1 / -1; }
+
 .project-block-label {
   margin-bottom: 6px;
   font-size: 11px;
@@ -847,6 +849,8 @@ h1.hero-title .accent { color: var(--accent-blue-light); }
 }
 
 .skills-group:first-child { grid-column: span 2; }
+/* Six cards on a three-column grid: the last one closes the grid at full width. */
+.skills-group:last-child { grid-column: 1 / -1; }
 
 @media (hover: hover) and (pointer: fine) {
   .skills-group:hover { border-color: rgba(91, 157, 255, 0.35); }
@@ -968,6 +972,7 @@ h1.hero-title .accent { color: var(--accent-blue-light); }
 
 @media (max-width: 900px) {
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills-group:last-child { grid-column: auto; }
 }
 
 @media (max-width: 600px) {
